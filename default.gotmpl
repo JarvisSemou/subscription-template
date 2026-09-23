@@ -233,7 +233,10 @@ vmess://{{ $vmessDict | toJson | b64enc }}
   {{- if hasKey $buildSecurityParams "sni" -}}
     {{- $params = append $params (printf "sni=%s" (index $buildSecurityParams "sni")) -}}
   {{- end -}}
-  {{- if hasKey $buildSecurityParams "fp" -}}
+  {{- if eq $proxy.Type "vless" -}}
+    {{- $params = append $params "fp=chrome" -}}
+    {{- $params = append $params "ipv6=0" -}}
+  {{- else if hasKey $buildSecurityParams "fp" -}}
     {{- $params = append $params (printf "fp=%s" (index $buildSecurityParams "fp")) -}}
   {{- end -}}
   {{- if hasKey $buildSecurityParams "allowInsecure" -}}

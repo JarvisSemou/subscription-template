@@ -60,7 +60,7 @@
 # Generated at: {{ now | date "2006-01-02 15:04:05" }}
 
 mode: rule
-ipv6: true
+ipv6: false
 allow-lan: true
 bind-address: '*'
 mixed-port: 10808
@@ -330,9 +330,7 @@ proxies:
   {{- if ne (default "" $proxy.CertPinSHA256) "" }}
   fingerprint: {{ $proxy.CertPinSHA256 }}
   {{- end }}
-  {{- if ne (default "" $proxy.Fingerprint) "" }}
-  client-fingerprint: {{ $proxy.Fingerprint }}
-  {{- end }}
+  client-fingerprint: chrome
   {{- if and (eq $proxy.Security "reality") (ne (default "" $proxy.RealityPublicKey) "") }}
   reality-opts:
     public-key: {{ $proxy.RealityPublicKey }}

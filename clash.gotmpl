@@ -61,16 +61,16 @@
 
 mode: rule
 ipv6: false
-allow-lan: true
+allow-lan: false
 bind-address: '*'
-mixed-port: 10808
+mixed-port: 7897
 log-level: info
 unified-delay: true
 tcp-concurrent: true
 external-controller: '0.0.0.0:9090'
 tun:
-  enable: true
-  stack: system
+  enable: false
+  stack: mips
   auto-route: true
 dns:
   enable: true
@@ -80,7 +80,7 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.lan'
@@ -99,9 +99,14 @@ dns:
   nameserver:
     - https://cloudflare-dns.com/dns-query
     - https://dns.google/dns-query
+    - https://doh.pub/dns-query
   fallback:
+    - 8.8.8.8
+    - 8.8.4.4
     - tls://1.1.1.1
     - tls://8.8.8.8
+    - 'tls://1.0.0.1:853'
+    - 'tls://dns.google:853'
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query

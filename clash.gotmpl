@@ -80,7 +80,7 @@ dns:
   use-hosts: true
   use-system-hosts: true
   respect-rules: false
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.lan'
@@ -93,6 +93,7 @@ dns:
     - '*.msftncsi.com'
     - '*.msftconnecttest.com'
     - 'time.*.com'
+    - ‘*.bing.com’
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -597,8 +598,8 @@ rules:
   - RULE-SET, ChinaMax, 🇨🇳 China
   - RULE-SET, Lan, 🎯 Direct
   - GEOIP, CN, 🇨🇳 China
-  - DOMAIN-SUFFIX, bing.com, 🎯 Direct
   - DOMAIN-SUFFIX, sprintcloud.top, 🎯 Direct
+  - DOMAIN, *.bing.com, 🎯 Direct
   - MATCH, 🐠 Final
 
 rule-providers:
